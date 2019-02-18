@@ -1,0 +1,25 @@
+<% provide(:title, current_user.username) %>
+<div class="row">
+  <div class="col-md-10 offset-md-1">
+    <div class="row">
+      <aside class="col-md-2">
+        <section class="pt-3">
+          <%= link_to gravatar_for(@user, 80), user_path(@user) %>
+          <strong><%= link_to @user.username, user_path(@user) %></strong>
+        </section>
+      </aside>
+      <div class="col-md-10">
+        <% if @posts.any? %>
+          <ul class="list-group list-group-flush">
+            <%= render @posts %>
+          </ul>
+        <% else %>
+          <p>N/A</p>
+        <% end %>
+      </div>
+      <%= will_paginate @posts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+      <%= link_to "+ Tweet", new_post_path, class: "post-creation btn btn-primary rounded", remote: true %>
+    </div>
+  </div>
+</div>
+<div class="modal fade post-modal" tabindex="-1" role="dialog" aria-hidden="true"></div>
