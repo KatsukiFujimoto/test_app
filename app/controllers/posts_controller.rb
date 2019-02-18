@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to root_url, notice: "The post \"#{post.content}\" was successfully created"
+      redirect_to root_url, notice: "The post \"#{@post.content}\" was successfully created"
     else
       render 'new'
     end
