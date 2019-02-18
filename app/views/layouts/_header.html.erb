@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+<nav class="sticky-top navbar navbar-expand-lg navbar-light bg-primary">
   <div class="container">
     <%= link_to "Test app", root_path, class: 'navbar-brand text-white' %>
 
@@ -12,11 +12,13 @@
           <li class="nav-item"><%= link_to 'ユーザー', root_path, class: 'nav-link text-white' %></li>
           <li class="nav-item dropdown">
             <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              アカウント <b class="caret"></b>
+              <%= gravatar_for(current_user, 20) %>
+              <strong><%= current_user.username %></strong>
+              <b class="caret"></b>
             </a>
 
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li class="dropdown-item"><%= link_to current_user.username, root_path %></li>
+              <li class="dropdown-item"><%= link_to current_user.username, user_path(current_user) %></li>
               <li class="dropdown-item"><%= link_to 'プロフィール編集', edit_user_registration_path %></li>
               <div class="dropdown-divider"></div>
               <li class="dropdown-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>

@@ -1,0 +1,26 @@
+<li class="post-list py-3 list-group-item" data-link="<%= post_url(post) %>">
+  <div class="row">
+    <div class="col-md-1 post-list">
+      <%= link_to gravatar_for(post.user, 40), user_path(post.user), style:"z-index:100;" %>
+    </div>
+    <div class="col-md-11 post-wrapper post-list">
+      <strong><%= link_to post.user.username, user_path(post.user) %></strong>
+      <span><%= time_ago_in_words(post.created_at) %></span>
+      <div class="post-menu dropdown">
+        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="#">Comment</a>
+          <% if current_user?(post.user) %>
+            <%= link_to "Delete", post_path(post), class: "dropdown-item", method: :delete, data: { confirm: "Are you sure?" } %>
+          <% end %>
+        </div>
+      </div>
+      <br />
+      <%= safe_join(post.content.split("\n"), tag(:br)) %><br />
+      <i class="far fa-comment"></i>
+      <i class="far fa-heart"></i>
+      <i class="fas fa-heart"></i>
+    </div>
+  </div>
+</li>

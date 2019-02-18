@@ -1,0 +1,26 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <%= form_for(@post) do |f| %>
+      <div class="modal-header p-0 border-0">
+        <button type="button" class="close pull-left mr-1" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <%= render 'shared/error_messages', object: f.object %>
+      </div>
+      <div class="row px-2">
+        <div class="col-md-1 pt-3">
+          <%= gravatar_for current_user, 40 %>
+        </div>
+        <div class="col-md-11 modal-body">
+          <div class="field">
+            <%#= f.label :content, "投稿内容" %>
+            <%= f.text_area :content, class: "form-control", size: "60x10", placeholder: "What's happening?" %>
+          </div>
+        </div>
+        <div class="modal-footer border-0 pt-0 ml-auto">
+          <%= f.submit "投稿", class: 'btn-sm btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
