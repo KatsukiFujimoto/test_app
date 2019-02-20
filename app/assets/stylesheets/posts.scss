@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.post-creation {
+.creation {
     position: fixed;
     bottom: 10%;
     right: 10%;
@@ -21,4 +21,12 @@
 
 a.post-link {
     display: block;
+}
+
+.icon-lg {
+    font-size: 1.5rem;
+}
+
+.post-list {
+    cursor: pointer;
 }

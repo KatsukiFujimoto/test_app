@@ -1,0 +1,6 @@
+<% if @comment.errors.any? %>
+  $(".error-wrapper").html("<%= escape_javascript(render partial: 'shared/error_messages', locals: { object: @comment }) %>")
+<% else %>
+  $(".modal").html("<%= escape_javascript(render partial: 'modals/comment') %>")
+  $(".modal").modal("show")
+<% end %>

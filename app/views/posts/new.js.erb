@@ -1,2 +1,6 @@
-$(".post-modal").html("<%= escape_javascript(render partial: 'modals/post') %>")
-$(".post-modal").modal("show")
+<% if @post.errors.any? %>
+  $(".error-wrapper").html("<%= escape_javascript(render partial: 'shared/error_messages', locals: { object: @post }) %>")
+<% else %>
+  $(".modal").html("<%= escape_javascript(render partial: 'modals/post') %>")
+  $(".modal").modal("show")
+<% end %>
