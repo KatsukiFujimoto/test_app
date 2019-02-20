@@ -15,9 +15,9 @@
       </div>
     </div>
     <%= will_paginate @posts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
-    <%= link_to "+ Tweet", new_post_path, class: "post-creation btn btn-primary rounded", remote: true %>
+    <%= link_to "+ Tweet", new_post_path, class: "creation btn btn-primary rounded", remote: true %>
   </div>
 </div>
-<div class="modal fade post-modal" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 
 <%= javascript_include_tag 'post_link.js' %>

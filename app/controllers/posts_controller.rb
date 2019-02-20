@@ -8,6 +8,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments
   end
 
   def new
@@ -37,6 +38,6 @@ class PostsController < ApplicationController
 
     def check_postuser
       user = Post.find(params[:id]).user
-    redirect_to root_url, notice: "You can only delete your posts" unless current_user?(user)
+      redirect_to root_url, notice: "You can only delete your posts" unless current_user?(user)
     end
 end

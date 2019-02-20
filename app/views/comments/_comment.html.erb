@@ -1,0 +1,32 @@
+<li class="comment-list py-3 list-group-item" data-link="<%= post_comment_path(post_id: post.id, id: comment.id) %>">
+  <div class="row">
+    <div class="col-md-1 comment-list">
+      <%= link_to gravatar_for(comment.user, 40), user_path(comment.user) %>
+    </div>
+    <div class="col-md-11 post-wrapper comment-list">
+      <strong><%= link_to comment.user.username, user_path(comment.user) %></strong>
+      <span><%= time_ago_in_words(comment.created_at) %></span>
+      <div class="post-menu dropdown">
+        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <%= link_to "Comment", new_comment_comment_path(comment), class: "dropdown-item", remote: true %>
+          <% if current_user?(comment.user) %>
+            <%= link_to "Delete", post_comment_path(post_id: post, id: comment.id), class: "dropdown-item", method: :delete, data: { confirm: "Are you sure?" } %>
+          <% end %>
+        </div>
+      </div>
+      <br />
+      <%= safe_join(comment.content.split("\n"), tag(:br)) %><br />
+      <%= link_to new_comment_comment_path(comment), remote: true do %>
+        <i class="far fa-comment"></i>
+        <%= comment.comments.count %>
+      <% end %>
+      <i class="far fa-heart"></i>
+      <i class="fas fa-heart"></i>
+    </div>
+  </div>
+</li>
+<ul>
+  <%= render partial: 'comments/comment', collection: comment.comments, locals: { post: post } %>
+</ul>

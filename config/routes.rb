@@ -6,5 +6,11 @@ Rails.application.routes.draw do
   end
   root 'pages#home'
   resources :users, only: :show
-  resources :posts
+  resources :posts do
+    resources :comments, only: [:show, :new, :create, :destroy]
+  end
+
+  resources :comments do
+    resources :comments, only: [:show, :new, :create, :destroy]
+  end
 end
