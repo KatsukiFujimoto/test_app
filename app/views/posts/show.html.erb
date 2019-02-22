@@ -27,7 +27,11 @@
                 <%= @post.comments.count %>
               <% end %>
             </div>
-            <div class="col-md-4"><i class="far fa-heart icon-lg"></i></div>
+            <div class="col-md-4">
+              <span id="likes_buttons_<%= @post.id %>">
+                <%= render partial: 'likes/like', locals: { likable: @post, icon_lg: 'icon-lg' } %>
+              </span>
+            </div>
           </div>
         </section>
         <section>
@@ -36,7 +40,7 @@
           </ul>
         </section>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 bg-white">
       </div>
     </div>
     <%= link_to "+ Comment", new_post_comment_path(@post), class: "creation btn btn-primary rounded", remote: true %>
