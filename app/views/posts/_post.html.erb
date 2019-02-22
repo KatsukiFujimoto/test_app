@@ -18,12 +18,13 @@
       </div>
       <br />
       <%= safe_join(post.content.split("\n"), tag(:br)) %><br />
-      <%= link_to new_post_comment_path(post), remote: true do %>
+      <%= link_to new_post_comment_path(post), class: 'pr-2', remote: true do %>
         <i class="far fa-comment"></i>
         <%= post.comments.count %>
       <% end %>
-      <i class="far fa-heart"></i>
-      <i class="fas fa-heart"></i>
+      <span id="likes_buttons_<%= post.id %>">
+        <%= render partial: 'likes/like', locals: { likable: post, icon_lg: '' } %>
+      </span>
     </div>
   </div>
 </li>

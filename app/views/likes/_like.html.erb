@@ -1,0 +1,33 @@
+<% if user_signed_in? %>
+
+  <% unless likable.like_user(current_user.id).blank? %>
+    <%= link_to like_path(id: likable.like_user(current_user.id).id, likable_id: likable.id, likable_type: likable.class, icon_lg: icon_lg), method: :delete, remote: true do %>
+        <i class="fas fa-heart text-danger <%= icon_lg %>"></i>
+        <span class="text-danger">
+          <%= likable.likes_count %>
+        </span>
+    <% end %>
+  <% else %>
+    <%= link_to likes_path(likable_id: likable.id, likable_type: likable.class, icon_lg: icon_lg), method: :post, remote: true do %>
+        <i class="far fa-heart text-muted <%= icon_lg %>"></i>
+        <span class="text-muted">
+          <%= likable.likes_count %>
+        </span>
+    <% end %>
+  <% end %>
+
+<% else %>
+
+  <% if likable.likes_count > 0 %>
+      <i class="fas fa-heart text-danger <%= icon_lg %>"></i>
+      <span class="text-danger">
+        <%= likable.likes_count %>
+      </span>
+  <% else %>
+      <i class="far fa-heart text-muted <%= icon_lg %>"></i>
+      <span class="text-muted">
+        <%= likable.likes_count %>
+      </span>
+  <% end %>
+
+<% end %>
